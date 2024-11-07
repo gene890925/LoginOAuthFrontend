@@ -1,8 +1,5 @@
-# 在 docker-compose 檔資料夾下以下這行指令建置環境
-輸入`docker-compose up -d`
+# 使進使用 npm 安裝 http-server。在命令行中
+輸入 `npm install -g http-server`
 
-# 進入容器內
-輸入 `docker-compose exec backend bash`
-
-# 安裝套件
-輸入 `composer install`
+# 啟動服務器：
+輸入 `http-server`
