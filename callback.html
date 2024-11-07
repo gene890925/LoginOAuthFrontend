@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google 登入中</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 獲取當前頁面的 URL
+        const url = new URL(window.location.href);
+        // 使用 URLSearchParams 來獲取查詢參數
+        const queryParams = new URLSearchParams(url.search);
+
+        // 檢查 'code' 參數是否存在且不為空
+        if (queryParams.has('code') && queryParams.get('code')) {
+            const code = queryParams.get('code');
+           // 發送 GET 請求並處理回應
+            axios.get('http://127.0.0.1:8081/api/user/googleCallback', {
+                params: {
+                    code: code
+                }
+            }).then(function (response) {
+                const token=response.data.result.token;
+                sessionStorage.setItem('goldenRing', token);
+                window.location.href ='/userdata.html';
+                
+            })
+            }
+    });
+    
+</script>
+</body>
+</html>
